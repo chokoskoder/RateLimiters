@@ -45,7 +45,8 @@ async function runInMemoryDemonstration() {
   const wait = (ms: number) => new Promise(res => setTimeout(res, ms));
 
   // --- Phase 1: Rapid burst to hit the limit ---
-  log(`\n--- PHASE 1: Rapid burst of 7 requests (1 every 500ms). ---`);
+  log(`\n--- PHASE 1: Rapid burst of 20 requests (1 every 100ms). ---`);
+  log(`this should ideally block every request after the first 10 becuase this is a burst of 20 requests in just 2 seconds`);
   for (let i = 1; i <= 20; i++) {
     const { allowed, currentCount } = limiter.allow();
     log(`Req #${i.toString().padStart(2)} -> ${allowed ? '✅ ALLOWED' : '❌ BLOCKED'} | Count in window: ${currentCount}`);
@@ -53,7 +54,7 @@ async function runInMemoryDemonstration() {
   }
 
   // --- Phase 2: Pause to let some requests age out ---
-  const PAUSE_DURATION = 2500; // Pause for 4 seconds
+  const PAUSE_DURATION = 2500; // Pause for 2.5  seconds
   log(`\n--- PHASE 2: Pausing for ${PAUSE_DURATION / 1000} seconds. ---`);
   await wait(PAUSE_DURATION);
   log("--- Pause complete. The window has slid forward. Early requests are expiring. ---");
