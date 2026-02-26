@@ -1,0 +1,1 @@
+Will be rewritten in golang with distributed systems in mind , new architecture , better implementations and may the goddess of victory bless me so i code out my own rate limiter which I envisioned one day
